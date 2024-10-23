@@ -129,14 +129,14 @@
         <div class="version">Neueste Version: 1.1</div>
         <div class="release-date">Veröffentlichungsdatum: 23. Oktober 2024</div>
         <div class="description">Änderungen: Kleinere Verbesserungen und Fehlerbehebungen.</div>
-        <a class="download-button" href="Version1.1.zip" download>Download</a>
+        <button class="download-button" onclick="downloadFile('Version1.1.zip')">Download</button>
     </div>
 
     <div class="version-container">
         <div class="version">Letzte Version: 1.0</div>
         <div class="release-date">Veröffentlichungsdatum: 15. August 2023</div>
         <div class="description">Änderungen: Kleinere Verbesserungen und Fehlerbehebungen.</div>
-        <a class="download-button" href="Version1.0.zip" download>Download</a>
+        <button class="download-button" onclick="downloadFile('Version1.0.zip')">Download</button>
     </div>
 </div>
 
@@ -144,6 +144,21 @@
     document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
     });
+
+    function downloadFile(filename) {
+        // Seite kurz neu laden
+        setTimeout(() => {
+            window.location.reload();
+        }, 100); // Zeit in Millisekunden
+
+        // Download-Link erstellen und klicken
+        const link = document.createElement('a');
+        link.href = filename;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 </script>
 
 </body>
