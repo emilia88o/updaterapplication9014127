@@ -7,74 +7,118 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            background: linear-gradient(180deg, #0d0d0d, #1a1a1a);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #333;
+            color: #e0e0e0;
+            overflow: hidden;
+            position: relative;
+            animation: backgroundAnimation 10s infinite alternate;
+        }
+        @keyframes backgroundAnimation {
+            0% { background-color: #1a1a1a; }
+            50% { background-color: #121212; }
+            100% { background-color: #1a1a1a; }
         }
         .container {
-            background: white;
+            background: rgba(30, 30, 30, 0.9);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
             text-align: center;
             max-width: 600px;
-            border: 1px solid #e1e1e1;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
         }
         h1 {
             margin-bottom: 20px;
-            font-size: 2.8em;
-            color: #007bff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-size: 3em;
+            color: #00bcd4;
+            text-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
+            animation: textGlow 1.5s infinite alternate;
+        }
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 20px rgba(0, 188, 212, 0.5); }
+            100% { text-shadow: 0 0 40px rgba(0, 255, 255, 1); }
         }
         .version-container {
             margin-bottom: 30px;
             padding: 20px;
             border-radius: 15px;
-            background: linear-gradient(135deg, #ffecb3, #ffe082);
+            background: linear-gradient(135deg, #b71c1c, #880e4f);
+            position: relative;
+            overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .version-container:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
         }
         .version {
-            font-size: 1.8em;
+            font-size: 2em;
             margin-bottom: 10px;
-            color: #ff5722;
+            color: #fff;
         }
         .release-date {
             font-size: 1em;
             margin-bottom: 15px;
-            color: #555;
+            color: #ccc;
         }
         .description {
             margin-bottom: 25px;
             font-size: 1em;
-            color: #444;
+            color: #ddd;
         }
         .download-button {
             padding: 15px 30px;
-            background-color: #ff5722;
+            background: linear-gradient(90deg, #00c853, #1de9b6);
             color: white;
             text-decoration: none;
             border-radius: 25px;
             font-size: 1.2em;
-            transition: background 0.3s, transform 0.3s;
-            border: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .download-button:hover {
-            background-color: #e64a19;
-            transform: translateY(-2px);
+            animation: pulse 0.5s infinite alternate;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .animated-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/black-paper.png');
+            opacity: 0.1;
+            animation: fadeInOut 3s infinite;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0.1; }
         }
         @media (max-width: 600px) {
             h1 {
-                font-size: 2.2em;
+                font-size: 2.5em;
             }
             .version {
                 font-size: 1.5em;
@@ -87,6 +131,8 @@
 </head>
 <body>
 
+<div class="animated-background"></div>
+
 <div class="container">
     <h1>Neue Version Verfügbar!</h1>
 
@@ -96,7 +142,7 @@
         <div class="description">
             Änderungen: Kleinere Verbesserungen und Fehlerbehebungen.
         </div>
-        <a href="TEstdubastard.zip" download="TEstdubastard.zip" class="download-button">Download</a>
+        <a href="Version1.1.zip" download="Version1.1.zip" class="download-button">Download</a>
     </div>
 
     <div class="version-container">
@@ -105,7 +151,7 @@
         <div class="description">
             Änderungen: Kleinere Verbesserungen und Fehlerbehebungen.
         </div>
-        <a href="TEstdubastard.zip" download="TEstdubastard.zip" class="download-button">Download</a>
+        <a href="Version1.1.zip" download="Version1.1.zip" class="download-button">Download</a>
     </div>
 </div>
 
