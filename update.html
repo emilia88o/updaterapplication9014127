@@ -78,9 +78,10 @@
             padding: 15px 30px;
             background: linear-gradient(90deg, #00c853, #1de9b6);
             color: white;
-            text-decoration: none;
+            border: none;
             border-radius: 25px;
             font-size: 1.2em;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -142,7 +143,7 @@
         <div class="description">
             Änderungen: Kleinere Verbesserungen und Fehlerbehebungen.
         </div>
-        <a href="Version1.1.zip" download="Version1.1.zip" class="download-button">Download</a>
+        <button class="download-button" onclick="downloadFile('Version1.1.exe')">Download</button>
     </div>
 
     <div class="version-container">
@@ -151,7 +152,7 @@
         <div class="description">
             Änderungen: Kleinere Verbesserungen und Fehlerbehebungen.
         </div>
-        <a href="Version1.1.zip" download="Version1.1.zip" class="download-button">Download</a>
+        <button class="download-button" onclick="downloadFile('Version1.0.exe')">Download</button>
     </div>
 </div>
 
@@ -159,6 +160,15 @@
     document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
     });
+
+    function downloadFile(filename) {
+        const link = document.createElement('a');
+        link.href = filename;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 </script>
 
 </body>
