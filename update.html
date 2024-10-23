@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Update</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            border: 1px solid #e1e1e1;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.8em;
+            color: #007bff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .version-container {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #ffecb3, #ffe082);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .version-container:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .version {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #ff5722;
+        }
+        .release-date {
+            font-size: 1em;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        .description {
+            margin-bottom: 25px;
+            font-size: 1em;
+            color: #444;
+        }
+        .download-button {
+            padding: 15px 30px;
+            background-color: #ff5722;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            transition: background 0.3s, transform 0.3s;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .download-button:hover {
+            background-color: #e64a19;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            .version {
+                font-size: 1.5em;
+            }
+            .download-button {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Neue Version Verfügbar!</h1>
+
+    <div class="version-container">
+        <div class="version">Neueste Version: 1.1</div>
+        <div class="release-date">Veröffentlichungsdatum: 23. Oktober 2024</div>
+        <div class="description">
+            Änderungen: Kleinere Verbesserungen und Fehlerbehebungen.
+        </div>
+        <a href="Version1.1.zip" download="Version1.1.zip" class="download-button">Download</a>
+    </div>
+
+    <div class="version-container">
+        <div class="version">Letzte Version: 1.0</div>
+        <div class="release-date">Veröffentlichungsdatum: 15. August 2023</div>
+        <div class="description">
+            Änderungen: Kleinere Verbesserungen und Fehlerbehebungen.
+        </div>
+        <a href="Version1.1.zip" download="Version1.1.zip" class="download-button">Download</a>
+    </div>
+</div>
+
+</body>
+</html>
