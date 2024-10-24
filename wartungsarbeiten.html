@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wartungsarbeiten</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .container {
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            max-width: 600px;
+            margin: auto;
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .emoji {
+            font-size: 4em;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #bdc3c7;
+        }
+        a {
+            color: #1abc9c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #ffcc00;
+        }
+        .button {
+            background-color: #ff4757; /* Neonrot */
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border-radius: 50px; /* Abgerundete Ecken */
+            cursor: pointer;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.6); /* Neon-Schatten */
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 71, 87, 0.3);
+            border-radius: 50px;
+            transform: scale(1.5);
+            transition: transform 0.3s;
+            z-index: 0;
+        }
+        .button:hover:before {
+            transform: scale(1);
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(255, 71, 87, 1);
+        }
+        .button:disabled {
+            background-color: rgba(189, 195, 199, 0.7);
+            cursor: not-allowed;
+            opacity: 0.5; /* Durchsichtig grau */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Wartungsarbeiten 🔧</h1>
+        <p>Wir verbessern unsere Seite für Sie!</p>
+        <p>Bitte schauen Sie bald wieder vorbei.</p>
+        <p class="emoji">🚧</p>
+        <button class="button" id="actionButton">Neuladen</button>
+    </div>
+    <footer>
+        &copy; 2024 <a href="#"></a>
+    </footer>
+
+    <script>
+        const button = document.getElementById('actionButton');
+        let countdownTimer;
+
+        function disableButton(duration) {
+            button.disabled = true; // Deaktivieren des Buttons
+            let remainingTime = duration;
+            button.textContent = `Warte: ${remainingTime} s`; // Anzeige des Countdowns
+
+            countdownTimer = setInterval(() => {
+                remainingTime--;
+                button.textContent = `Warte: ${remainingTime} s`; // Aktualisieren der Anzeige
+                if (remainingTime <= 0) {
+                    clearInterval(countdownTimer);
+                    button.disabled = false; // Aktivieren nach 10 Sekunden
+                    button.textContent = 'Neuladen'; // Zurücksetzen des Button-Texts
+                }
+            }, 1000);
+        }
+
+        // Überprüfen, ob der Button im Timeout ist
+        const buttonDisabled = localStorage.getItem('buttonDisabled');
+        const timeoutEnd = localStorage.getItem('timeoutEnd');
+        if (buttonDisabled === 'true' && timeoutEnd) {
+            const remainingTime = Math.max(0, Math.ceil((timeoutEnd - Date.now()) / 1000));
+            if (remainingTime > 0) {
+                disableButton(remainingTime);
+            }
+        }
+
+        button.addEventListener('click', () => {
+            localStorage.setItem('buttonDisabled', 'true'); // Status setzen
+            localStorage.setItem('timeoutEnd', Date.now() + 10000); // Timeout-Zeit setzen
+            location.reload(); // Seite neu laden
+        });
+
+        // Aufrufen der Funktion, wenn die Seite geladen wird
+        window.addEventListener('load', () => {
+            const buttonDisabled = localStorage.getItem('buttonDisabled');
+            const timeoutEnd = localStorage.getItem('timeoutEnd');
+            if (buttonDisabled === 'true' && timeoutEnd) {
+                const remainingTime = Math.max(0, Math.ceil((timeoutEnd - Date.now()) / 1000));
+                if (remainingTime > 0) {
+                    disableButton(remainingTime);
+                }
+            }
+        });
+
+        // Deaktivieren des Rechtsklicks
+        window.addEventListener('contextmenu', (event) => {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
